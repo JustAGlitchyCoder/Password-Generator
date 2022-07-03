@@ -1,0 +1,24 @@
+import random
+import string
+
+characters = list(string.ascii_letters + string.digits)  # list ech contains all digits and letters
+random.shuffle(characters)  # randomly shuffles the list
+
+
+def password_generator(name):  # function which generates a random password
+    password_size = int(input('How long do you want your password to be: '))
+    password = []
+    for o in range(password_size):  # runs a loop which iterates the length of the password
+        password.append(random.choice(characters))  # adds a random character from the character list into the password
+
+    password = ''.join(password)  # joins the characters inside the password list together
+    password_file = open('password_file', 'a')  # opens the password file and allows it to be written and read
+    password_file.write(f'{name}: {password}\n')  # writes name : password on a new line
+    password_file.close()  # closes the file
+
+
+amount = int(input('How many passwords would you like to generate: '))
+
+for i in range(amount):  # loop that iterates the amount of passwords the user wants to make
+    password_name = input('What would you like to create a password for: ')
+    password_generator(password_name)  # runs the function with the password name as a variable
